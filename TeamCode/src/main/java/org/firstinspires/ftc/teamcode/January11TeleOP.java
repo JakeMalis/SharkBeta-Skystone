@@ -36,19 +36,15 @@ public class January11TeleOP extends LinearOpMode {
                 double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
                 double robotAngle = Math.atan2(gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
                 double rightX = -gamepad1.right_stick_x;
-                //left motor
                 final double v1 = r * Math.cos(robotAngle) + rightX * motorPower;
-                //right motor
                 final double v2 = r * Math.sin(robotAngle) - rightX * motorPower;
-                //left motor2
                 final double v3 = r * Math.sin(robotAngle) + rightX * motorPower;
-                //right motor2
                 final double v4 = r * Math.cos(robotAngle) - rightX * motorPower;
 
-                leftMotor1.setPower(v1);
-                rightMotor1.setPower(v2);
-                leftMotor2.setPower(v3);
-                rightMotor2.setPower(v4);
+                leftMotor1.setPower(-v1);
+                rightMotor1.setPower(-v2);
+                leftMotor2.setPower(-v3);
+                rightMotor2.setPower(-v4);
             } else {
                 leftMotor1.setPower(0);
                 leftMotor2.setPower(0);
@@ -75,7 +71,34 @@ public class January11TeleOP extends LinearOpMode {
             }
 
             while(gamepad2.right_bumper) {
+                if (gamepad2.right_bumper) {
                     clawMotor.setPower(.7);
+                    sleep(500);
+                }
+                if (gamepad2.left_bumper) {
+                    clawMotor.setPower(-.7);
+                    sleep(500);
+                }
+                    clawMotor.setPower(.7);
+                while ((Math.abs(gamepad1.left_stick_x) > 0.2 || (Math.abs(gamepad1.left_stick_y) > 0.2)) || (Math.abs(gamepad1.right_stick_x) > 0.2 || (Math.abs(gamepad1.right_stick_y) > 0.2))) {
+                    double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
+                    double robotAngle = Math.atan2(gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
+                    double rightX = -gamepad1.right_stick_x;
+                    final double v1 = r * Math.cos(robotAngle) + rightX * motorPower;
+                    final double v2 = r * Math.sin(robotAngle) - rightX * motorPower;
+                    final double v3 = r * Math.sin(robotAngle) + rightX * motorPower;
+                    final double v4 = r * Math.cos(robotAngle) - rightX * motorPower;
+
+                    leftMotor1.setPower(-v1);
+                    rightMotor1.setPower(-v2);
+                    leftMotor2.setPower(-v3);
+                    rightMotor2.setPower(-v4);
+                } //else {
+                    leftMotor1.setPower(0);
+                    leftMotor2.setPower(0);
+                    rightMotor1.setPower(0);
+                    rightMotor2.setPower(0);
+                //}
                 if (gamepad2.dpad_up)
                     armMotor.setPower(-1);
                 else if (gamepad2.dpad_down)
@@ -85,6 +108,25 @@ public class January11TeleOP extends LinearOpMode {
             }
             while (gamepad2.left_bumper) {
                     clawMotor.setPower(-.7);
+                while ((Math.abs(gamepad1.left_stick_x) > 0.2 || (Math.abs(gamepad1.left_stick_y) > 0.2)) || (Math.abs(gamepad1.right_stick_x) > 0.2 || (Math.abs(gamepad1.right_stick_y) > 0.2))) {
+                    double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
+                    double robotAngle = Math.atan2(gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
+                    double rightX = -gamepad1.right_stick_x;
+                    final double v1 = r * Math.cos(robotAngle) + rightX * motorPower;
+                    final double v2 = r * Math.sin(robotAngle) - rightX * motorPower;
+                    final double v3 = r * Math.sin(robotAngle) + rightX * motorPower;
+                    final double v4 = r * Math.cos(robotAngle) - rightX * motorPower;
+
+                    leftMotor1.setPower(-v1);
+                    rightMotor1.setPower(-v2);
+                    leftMotor2.setPower(-v3);
+                    rightMotor2.setPower(-v4);
+                } //else {
+                    leftMotor1.setPower(0);
+                    leftMotor2.setPower(0);
+                    rightMotor1.setPower(0);
+                    rightMotor2.setPower(0);
+                //}
                 if (gamepad2.dpad_down)
                     armMotor.setPower(0);
                 else if (gamepad2.dpad_up)
@@ -95,22 +137,9 @@ public class January11TeleOP extends LinearOpMode {
 
             if(!gamepad2.right_bumper)
                 clawMotor.setPower(0);
-
             if(!gamepad2.left_bumper)
                 clawMotor.setPower(0);
 
-
-            /*while (gamepad2.dpad_up)
-                armMotor.setPower(-1);
-            while (gamepad2.dpad_down)
-                armMotor.setPower(0);
-            if (!(gamepad2.dpad_down && gamepad2.dpad_up && gamepad2.dpad_left && gamepad2.dpad_right))
-                armMotor.setPower(-.2);*/
-
-
-
-
-            //telemetry.addData("clawMotor: ", clawMotor.getPower());
             telemetry.update();
 
             if (gamepad2.dpad_up)
@@ -118,7 +147,7 @@ public class January11TeleOP extends LinearOpMode {
             else if (gamepad2.dpad_down)
                 armMotor.setPower(0);
             else
-                armMotor.setPower(-.2);
+                armMotor.setPower(-.15);
 
             telemetry.update();
         }

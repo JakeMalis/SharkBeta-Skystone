@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @Autonomous
 public class January11SimpleAuto extends LinearOpMode {
@@ -24,10 +25,10 @@ public class January11SimpleAuto extends LinearOpMode {
         clawMotor = hardwareMap.get(CRServo.class, "clawMotor");
         armMotor = hardwareMap.get(DcMotor.class, "arm_motor");
 
-        leftMotor1.setDirection(DcMotor.Direction.REVERSE);
-        leftMotor2.setDirection(DcMotor.Direction.REVERSE);
-        rightMotor1.setDirection(DcMotor.Direction.FORWARD);
-        rightMotor2.setDirection(DcMotor.Direction.FORWARD);
+        leftMotor1.setDirection(DcMotor.Direction.FORWARD);
+        leftMotor2.setDirection(DcMotor.Direction.FORWARD);
+        rightMotor1.setDirection(DcMotor.Direction.REVERSE);
+        rightMotor2.setDirection(DcMotor.Direction.REVERSE);
         armMotor.setDirection(DcMotor.Direction.REVERSE);
 
         leftMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
